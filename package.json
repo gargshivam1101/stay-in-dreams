@@ -1,0 +1,21 @@
+{
+  "name": "stay-in-dreams",
+  "version": "1.0.0",
+  "description": "Hi! This is a website for all your real estate needs, to be used by realtors and customers. Using **MERN stack**.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev":"nodemon api/index.js",
+    "start": "node api/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
