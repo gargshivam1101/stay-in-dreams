@@ -1,18 +1,24 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
+import express from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import userRouter from "./routes/user.route.js";
 
 dotenv.config();
 
 // URI for MongoDB comes form the .env file
-mongoose.connect(process.env.MONGO_DB_URI).then(() => {
-    console.log("Connection to DB is successfull")
-}).catch((err) => {
+mongoose
+  .connect(process.env.MONGO_DB_URI)
+  .then(() => {
+    console.log("Connection to DB is successfull");
+  })
+  .catch((err) => {
     console.log(err);
-});
+  });
 
 const app = express();
 
 app.listen(3000, () => {
-    console.log("Server is running on port 3000!");
+  console.log("Server is running on port 3000!");
 });
+
+app.use("/api/user", userRouter);
