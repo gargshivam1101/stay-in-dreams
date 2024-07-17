@@ -1,4 +1,15 @@
 import express from 'express';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+// URI for MongoDB comes form the .env file
+mongoose.connect(process.env.MONGO_DB_URI).then(() => {
+    console.log("Connection to DB is successfull")
+}).catch((err) => {
+    console.log(err);
+});
 
 const app = express();
 
