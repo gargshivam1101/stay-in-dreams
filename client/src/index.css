@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    font-family: "Raleway", serif !important;
+    -webkit-font-smoothing: antialiased;
+    background-image: linear-gradient(to left, rgba(112, 68, 47, 0.441), rgb(226, 208, 151));
+}

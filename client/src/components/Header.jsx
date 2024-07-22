@@ -25,21 +25,21 @@ export default function Header() {
         {/* Menu */}
         <ul className="flex gap-4">
           <Link to="/">
-            <l1 className="hidden sm:inline text-amber-700 hover:underline hover:text-red-600">
+            <li className="hidden sm:inline text-amber-700 hover:underline hover:text-red-600">
               Home
-            </l1>
+            </li>
           </Link>
 
           <Link to="/about">
-            <l1 className="hidden sm:inline text-amber-700 hover:underline hover:text-red-600">
+            <li className="hidden sm:inline text-amber-700 hover:underline hover:text-red-600">
               About
-            </l1>
+            </li>
           </Link>
 
           <Link to="/login">
-            <l1 className="inline text-amber-700 hover:underline hover:text-red-600">
+            <li className="inline text-amber-700 hover:underline hover:text-red-600">
               Login
-            </l1>
+            </li>
           </Link>
         </ul>
       </div>
