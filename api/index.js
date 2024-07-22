@@ -27,3 +27,15 @@ app.listen(3000, () => {
 app.use("/api/user", userRouter);
 
 app.use("/api/auth", authRouter);
+
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500; // default to 500 if none comes
+  const msg =
+    err.message || // from error
+    "Internal Server Error. Please contact System Admin"; // or default msg
+  return res.status(statusCode).json({
+    success: false,
+    statusCode,
+    message: msg,
+  });
+});
