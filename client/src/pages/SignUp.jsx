@@ -65,7 +65,7 @@ export default function SignUp() {
           onChange={changeField}
         />{" "}
         <input
-          type="text"
+          type="password"
           placeholder="Enter Password"
           className="border p-3 rounded-lg bg-amber-50 focus:outline-none"
           id="password"
@@ -84,7 +84,7 @@ export default function SignUp() {
           <span className="text-cyan-700">Sign In</span>
         </Link>
       </div>
-      {error && <p className="text-red-500 mt-5">{error}</p>}
+      {error && <p className="text-red-500 mt-5 font-semibold">{error}</p>}
     </div>
   );
 }
