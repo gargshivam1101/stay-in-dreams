@@ -1,11 +1,18 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  loginStart,
+  loginSuccess,
+  loginFailure,
+} from "../redux/user/userSlice";
 
 export default function Login() {
   const [formData, setFormData] = useState({});
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+
+  const { loading, error } = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const changeField = (e) => {
     setFormData({
@@ -18,7 +25,7 @@ export default function Login() {
     e.preventDefault(); // do not refresh the page
 
     try {
-      setLoading(true);
+      dispatch(loginStart());
 
       const res = await fetch("/api/auth/login", {
         method: "POST",
@@ -30,17 +37,14 @@ export default function Login() {
 
       const resData = await res.json();
       if (resData.success === false) {
-        setError(resData.message);
-        setLoading(false);
+        dispatch(loginFailure(resData.message));
         return;
       }
 
-      setLoading(false);
-      setError(null);
+      dispatch(loginSuccess(resData));
       navigate("/");
     } catch (err) {
-      setLoading(false);
-      setError(err.message);
+      dispatch(loginFailure(err.message));
     }
   };
 
