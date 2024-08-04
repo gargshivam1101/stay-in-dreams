@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import OAuth from "../components/OAuth";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({});
@@ -73,15 +74,16 @@ export default function SignUp() {
         />
         <button
           disabled={loading}
-          className="bg-amber-700 text-white p-3 px-10 rounded-lg uppercase hover:opacity-95 disabled:opacity-70 max-w-48 self-center"
+          className="bg-amber-700 text-white p-3 px-10 rounded-lg uppercase hover:opacity-95 disabled:opacity-70 max-w-72 self-center"
         >
-          Register
+          {loading ? "Loading" : "Register"}
         </button>
+        <OAuth />
       </form>
       <div className="flex gap-1 mt-5">
         <p className="text-amber-700">Have an account?</p>
         <Link to={"/login"}>
-          <span className="text-cyan-700">Sign In</span>
+          <span className="text-cyan-700">Login</span>
         </Link>
       </div>
       {error && <p className="text-red-500 mt-5 font-semibold">{error}</p>}
