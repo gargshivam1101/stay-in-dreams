@@ -46,3 +46,44 @@ export const login = async (req, res, next) => {
     next(err);
   }
 };
+
+export const google = async (req, res, next) => {
+  try {
+    // if user exists, just sign in, otherwise register
+
+    const user = await User.findOne({ email: req.body.email });
+    if (user) {
+      // already exists, same code as login
+      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+      const { password: pwd, ...rem } = user._doc;
+      res
+        .cookie("access_token", token, { httpOnly: true })
+        .status(200)
+        .json(rem);
+    } else {
+      // first make a pwd for user, and then similar to signup
+      const genPwd =
+        Math.random().toString(36).slice(-8) +
+        Math.random().toString(36).slice(-8);
+      const encryptPwd = bcryptjs.hashSync(genPwd, 10); // salt defaults to 10
+      const newUser = new User({
+        username:
+          req.body.name.split(" ").join("").toLowerCase() +
+          Math.random().toString(36).slice(-4),
+        email: req.body.email,
+        password: encryptPwd,
+        avatar: req.body.photo,
+      });
+      await newUser.save();
+      // now login the newUser
+      const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
+      const { password: pwd, ...rem } = newUser._doc;
+      res
+        .cookie("access_token", token, { httpOnly: true })
+        .status(200)
+        .json(rem);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
