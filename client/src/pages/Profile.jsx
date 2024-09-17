@@ -286,9 +286,11 @@ export default function Profile() {
                 >
                   Delete
                 </button>
-                <button className="text-amber-600 uppercase rounded-lg hover:opacity-75">
-                  Edit
-                </button>
+                <Link to={`/update-listing/${listing._id}`}>
+                  <button className="text-amber-600 uppercase rounded-lg hover:opacity-75">
+                    Edit
+                  </button>
+                </Link>
               </div>
             </div>
           ))}
