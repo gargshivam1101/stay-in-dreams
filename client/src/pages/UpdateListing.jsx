@@ -312,7 +312,9 @@ export default function UpdateListing() {
               />
               <div className="flex flex-col">
                 <p className="text-amber-800">Regular Price</p>
-                <span className="text-xs text-amber-900">($ / month)</span>
+                {formData.type === "rent" && (
+                  <span className="text-xs text-amber-900">($ / month)</span>
+                )}
               </div>
             </div>
 
@@ -329,7 +331,9 @@ export default function UpdateListing() {
                 />
                 <div className="flex flex-col">
                   <p className="text-amber-800">Discounted Price</p>
-                  <span className="text-xs text-amber-900">($ / month)</span>
+                  {formData.type === "rent" && (
+                    <span className="text-xs text-amber-900">($ / month)</span>
+                  )}
                 </div>
               </div>
             )}
