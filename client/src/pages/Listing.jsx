@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from "swiper";
 import { Navigation } from "swiper/modules";
 import "swiper/css/bundle";
-
 import {
   FaBath,
   FaBed,
@@ -14,14 +13,18 @@ import {
   FaParking,
   FaShare,
 } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import Contact from "../components/Contact";
 
 export default function Listing() {
   SwiperCore.use([Navigation]);
   const params = useParams();
+  const { currentUser } = useSelector((state) => state.user);
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [contact, setContact] = useState(false);
 
   useEffect(() => {
     const fetchListing = async () => {
@@ -154,9 +157,22 @@ export default function Listing() {
                 {listing.furnished ? "Furnished" : "Unfurnished"}
               </li>
             </ul>
+            {/* only show if user is logged in, and is not the landlord himself */}
+            {currentUser && listing.userRef !== currentUser._id && !contact && (
+              <button
+                className="bg-gray-700 text-white rounded-lg uppercase hover:opacity-95 p-3"
+                onClick={() => setContact(true)}
+              >
+                Contact landlord
+              </button>
+            )}
+            {contact && <Contact listing={listing} />}
           </div>
         </div>
       )}
     </main>
   );
+}
+{
+  /* http://localhost:5173/listing/66e85b750e5f8da527bd43ca */
 }

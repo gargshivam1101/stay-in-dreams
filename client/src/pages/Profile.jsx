@@ -256,6 +256,13 @@ export default function Profile() {
         <p className="text-red-500 mt-5 font-semibold">{listingError}</p>
       )}
 
+      {userListings && userListings.length == 0 && (
+        <div className="text-red-600 text-xl text-center mt-6">
+          You have not published any listings yet!
+        </div>
+      )}
+
+      {/* Show Listings below */}
       {userListings && userListings.length > 0 && (
         <div>
           <h1 className="text-center mt-6 text-2xl text-amber-700 font-semibold gap-4">

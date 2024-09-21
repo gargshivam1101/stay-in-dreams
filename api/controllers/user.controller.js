@@ -3,10 +3,6 @@ import User from "../models/user.model.js";
 import { errorHandler } from "../utils/error.js";
 import bcryptjs from "bcryptjs";
 
-export const test = (req, res) => {
-  res.send("Heyy");
-};
-
 export const updateUser = async (req, res, next) => {
   if (req.user.id !== req.params.id) {
     return next(errorHandler(401, "Cannot update account of other user"));
@@ -61,6 +57,21 @@ export const getUserListings = async (req, res, next) => {
   try {
     const listings = await Listing.find({ userRef: req.params.id });
     res.status(200).json(listings);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getUser = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.id);
+
+    if (!user) {
+      return next(errorHandler(404, "User does not exist"));
+    }
+
+    const { password: pass, ...rem } = user._doc;
+    res.status(200).json(rem);
   } catch (error) {
     next(error);
   }
