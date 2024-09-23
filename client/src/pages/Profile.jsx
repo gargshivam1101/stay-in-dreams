@@ -137,6 +137,8 @@ export default function Profile() {
       if (data.success === false) {
         setListingError(true);
         return;
+      } else if (data.length === 0) {
+        setListingError(true);
       }
 
       setUserListings(data);
@@ -253,13 +255,9 @@ export default function Profile() {
         Show Listings
       </button>
       {listingError && (
-        <p className="text-red-500 mt-5 font-semibold">{listingError}</p>
-      )}
-
-      {userListings && userListings.length == 0 && (
-        <div className="text-red-600 text-xl text-center mt-6">
-          You have not published any listings yet!
-        </div>
+        <p className="text-red-500 mt-5 font-semibold text-center">
+          Error fetching listings, or there are none yet
+        </p>
       )}
 
       {/* Show Listings below */}
