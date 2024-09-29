@@ -32,8 +32,6 @@ export default function Profile() {
   const [listingError, setListingError] = useState(false);
   const dispatch = useDispatch();
 
-  console.log(filePercentage);
-
   useEffect(() => {
     if (file) {
       handleFileUpload(file);

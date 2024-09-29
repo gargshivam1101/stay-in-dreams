@@ -31,9 +31,6 @@ export default function CreateListing() {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  console.log(formData);
-
   const uploadImage = async (file) => {
     return new Promise((resolve, reject) => {
       const storage = getStorage(app);

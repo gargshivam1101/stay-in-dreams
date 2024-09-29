@@ -47,8 +47,6 @@ export default function UpdateListing() {
     fetchListing();
   }, []);
 
-  console.log(formData);
-
   const uploadImage = async (file) => {
     return new Promise((resolve, reject) => {
       const storage = getStorage(app);

@@ -30,8 +30,6 @@ export default function OAuth() {
       const data = await res.json();
       dispatch(loginSuccess(data));
       navigate("/");
-
-      // console.log(res);
     } catch (error) {
       console.log("Error while Google Auth", error);
     }

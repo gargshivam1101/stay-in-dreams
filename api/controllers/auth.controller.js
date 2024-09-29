@@ -4,8 +4,6 @@ import { errorHandler } from "../utils/error.js";
 import jwt from "jsonwebtoken";
 
 export const signup = async (req, res, next) => {
-  // some code
-  console.log(req.body);
   const { username, email, password } = req.body;
   const encryptPwd = bcryptjs.hashSync(password, 10); // salt defaults to 10
   const newUser = new User({ username, email, password: encryptPwd });
@@ -19,8 +17,6 @@ export const signup = async (req, res, next) => {
 };
 
 export const login = async (req, res, next) => {
-  // some code
-  console.log(req.body);
   const { email, password } = req.body;
   try {
     const checkUser = await User.findOne({ email });
